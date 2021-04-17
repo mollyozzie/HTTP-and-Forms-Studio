@@ -24,8 +24,15 @@
 		goButton.addEventListener("click", event => {
 			let searchEngine = setSearchEngine();
 			document.querySelector("form").setAttribute("action", searchEngine);
-
 		});
+		let form = document.getElementById("searchForm");
+		form.addEventListener("submit", function(event) {
+			let searchTerm = document.querySelector("input[name=q]");
+			if (searchTerm.value === "") {
+				alert("All fields are required!");
+				event.preventDefault();
+			}
+		})
     });
 	</script>
 </head>
@@ -34,7 +41,7 @@
 
 	<form id="searchForm" method="GET">
     <input type="text" name="q"/>
-	<label><input type="radio" name="engine" value="google"/>Google</label>
+	<label><input type="radio" name="engine" value="google" required/>Google</label>
 	<label><input type="radio" name="engine" value="duckDuckGo"/>DuckDuckGo</label>
 	<label><input type="radio" name="engine" value="bing"/>Bing</label>
 	<label><input type="radio" name="engine" value="ask"/>Ask</label>
